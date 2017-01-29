@@ -9,6 +9,7 @@ import io.moquette.server.config.ResourceLoaderConfig;
 import pl.parteka.smarthome.core.Broker;
 import pl.parteka.smarthome.core.Driver;
 import pl.parteka.smarthome.core.command.Command;
+import pl.parteka.smarthome.mqtt.message.CommandMessage;
 
 import java.io.IOException;
 import java.util.ArrayList;

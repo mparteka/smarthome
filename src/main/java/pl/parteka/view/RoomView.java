@@ -63,7 +63,7 @@ public class RoomView {
 
     private void showTemperature() {
         for(TemperatureSensor temperatureSensor : temperatureSensors) {
-            System.out.println(temperatureSensor.getName() + ": " + temperatureSensor.getValue());
+            System.out.println(temperatureSensor.getStatus());
         }
     }
 

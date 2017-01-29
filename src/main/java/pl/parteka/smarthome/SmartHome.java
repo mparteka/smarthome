@@ -5,7 +5,8 @@ import pl.parteka.smarthome.core.Pin;
 import pl.parteka.smarthome.core.device.receiver.Light;
 import pl.parteka.smarthome.core.device.sensor.TemperatureSensor;
 import pl.parteka.smarthome.mqtt.MqttBroker;
-import pl.parteka.smarthome.opi.mqtt.intercepthandlers.MessageHandler;
+import pl.parteka.smarthome.mqtt.intercepthandlers.ClientMessageHandler;
+import pl.parteka.smarthome.mqtt.intercepthandlers.DriverMessageHandler;
 import pl.parteka.view.RoomView;
 
 /**
@@ -18,17 +19,16 @@ public class SmartHome {
     public static void main(String[] args) throws Exception {
         final MqttBroker broker = new MqttBroker();
         Driver driver = new Driver(clientId, broker);
+        DriverMessageHandler driverMessageHandler = new DriverMessageHandler();
+        driverMessageHandler.registerListener(driver);
 
-        MessageHandler messageHandler = new MessageHandler();
-        broker.addInterceptHandler(messageHandler);
+        broker.addInterceptHandler(driverMessageHandler);
+        broker.addInterceptHandler(new ClientMessageHandler());
 
         //TODO: move it to core initialization and read definition from DB
         Light light1 = new Light(driver, "Biuro light", new Pin(Pin.PA13));
         Light light2 = new Light(driver, "Pokój light", new Pin(Pin.PA14));
-        messageHandler.registerListener(light1);
-        messageHandler.registerListener(light2);
-        TemperatureSensor temp1 = new TemperatureSensor(driver, "Biuro temp", "28-80000004920e");
-        messageHandler.registerListener(temp1);
+        TemperatureSensor temp1 = new TemperatureSensor(driver, "Biuro", "28-80000004920e");
 
         RoomView roomView = new RoomView();
         roomView.addLight(light1);

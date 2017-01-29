@@ -1,4 +1,4 @@
-package pl.parteka.smarthome.mqtt;
+package pl.parteka.smarthome.mqtt.message;
 
 import io.moquette.parser.proto.messages.PublishMessage;
 import pl.parteka.smarthome.core.Driver;
@@ -15,7 +15,7 @@ public class CommandMessage extends PublishMessage {
     private static final String TOPIC_NAME = "command";
 
     public CommandMessage(Driver driver, Command command) {
-        setClientId(driver.getId());
+        setClientId(driver.getId().toString());
         setQos(QOSType.EXACTLY_ONCE);
         setTopicName(TOPIC_NAME);
         setPayload(ByteBuffer.wrap(command.getCommandString().getBytes()));

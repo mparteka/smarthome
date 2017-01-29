@@ -3,17 +3,19 @@ package pl.parteka.smarthome.core.device.receiver;
 import pl.parteka.smarthome.core.Driver;
 import pl.parteka.smarthome.core.Pin;
 import pl.parteka.smarthome.core.command.SwitchCommand;
+import pl.parteka.smarthome.core.device.AbstractDriverDevice;
+import pl.parteka.smarthome.core.device.DeviceId;
 
 /**
  * Created by Michal on 2017-01-15.
  */
-public class Light extends Receiver {
-
+public class Light extends AbstractDriverDevice {
+    protected final Pin pin;
 
     public Light(Driver driver, String name, Pin pin) {
-        super(driver, name, pin);
+        super(driver, name, new DeviceId(pin.toString()));
+        this.pin = pin;
     }
-
 
     protected void setPinState(int pinState) {
         SwitchCommand command = new SwitchCommand(pin, pinState);
@@ -41,4 +43,8 @@ public class Light extends Receiver {
         setPinState(Pin.PIN_OFF);
     }
 
+    @Override
+    public void notify(String payload) {
+        this.pin.setValue(Integer.valueOf(payload));
+    }
 }
