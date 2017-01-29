@@ -36,9 +36,9 @@ public class Driver implements DriverMessageListener {
 
     @Override
     public void notify(DriverMessage message) {
-//        if (devices.containsKey(message.getDeviceId())) {
+        if (devices.containsKey(message.getDeviceId())) {
             devices.get(message.getDeviceId()).notify(message.getValue());
-//        }
+        }
     }
 
     @Override

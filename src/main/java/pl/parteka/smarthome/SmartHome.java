@@ -7,6 +7,7 @@ import pl.parteka.smarthome.core.device.sensor.TemperatureSensor;
 import pl.parteka.smarthome.mqtt.MqttBroker;
 import pl.parteka.smarthome.mqtt.intercepthandlers.ClientMessageHandler;
 import pl.parteka.smarthome.mqtt.intercepthandlers.DriverMessageHandler;
+import pl.parteka.smarthome.opi.PinDefinition;
 import pl.parteka.view.RoomView;
 
 /**
@@ -25,9 +26,9 @@ public class SmartHome {
         broker.addInterceptHandler(driverMessageHandler);
         broker.addInterceptHandler(new ClientMessageHandler());
 
-        //TODO: move it to core initialization and read definition from DB
-        Light light1 = new Light(driver, "Biuro light", new Pin(Pin.PA13));
-        Light light2 = new Light(driver, "Pokój light", new Pin(Pin.PA14));
+        //TODO: move it to core initialization and read definition from DB or property file
+        Light light1 = new Light(driver, "Biuro light", new Pin(PinDefinition.PA13));
+        Light light2 = new Light(driver, "Pokój light", new Pin(PinDefinition.PA14));
         TemperatureSensor temp1 = new TemperatureSensor(driver, "Biuro", "28-80000004920e");
 
         RoomView roomView = new RoomView();
