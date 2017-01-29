@@ -1,4 +1,4 @@
-package pl.parteka.smarthome.core.sensor;
+package pl.parteka.smarthome.core.device.sensor;
 
 import pl.parteka.smarthome.core.Driver;
 

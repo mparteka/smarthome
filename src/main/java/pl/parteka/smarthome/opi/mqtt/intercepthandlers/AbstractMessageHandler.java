@@ -1,7 +1,7 @@
 package pl.parteka.smarthome.opi.mqtt.intercepthandlers;
 
 import io.moquette.interception.AbstractInterceptHandler;
-import pl.parteka.smarthome.core.DriverStateListener;
+import pl.parteka.smarthome.core.device.DriverStateListener;
 import pl.parteka.smarthome.opi.mqtt.intercepthandlers.message.AbstractMessage;
 
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package pl.parteka.smarthome.mqtt;
 
 import io.moquette.interception.InterceptHandler;
-import io.moquette.parser.proto.messages.PublishMessage;
 import io.moquette.server.Server;
 import io.moquette.server.config.ClasspathResourceLoader;
 import io.moquette.server.config.IConfig;
@@ -9,7 +8,6 @@ import io.moquette.server.config.IResourceLoader;
 import io.moquette.server.config.ResourceLoaderConfig;
 import pl.parteka.smarthome.core.Broker;
 import pl.parteka.smarthome.core.Driver;
-import pl.parteka.smarthome.core.Message;
 import pl.parteka.smarthome.core.command.Command;
 
 import java.io.IOException;
@@ -37,16 +35,14 @@ public class MqttBroker implements Broker {
         }
     }
 
-    public void publish(Message message) {
-        server.internalPublish((PublishMessage) message);
-    }
-
-    @Override
-    public void sendCommand(Driver driver, Command command) {
-
-    }
 
     public boolean addInterceptHandler(InterceptHandler interceptHandler) {
         return server.addInterceptHandler(interceptHandler);
+    }
+
+    @Override
+    public void publish(Driver driver, Command command) {
+        CommandMessage message = new CommandMessage(driver, command);
+        server.internalPublish(message);
     }
 }

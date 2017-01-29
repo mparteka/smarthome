@@ -1,7 +1,6 @@
 package pl.parteka.smarthome.core;
 
 import pl.parteka.smarthome.core.command.Command;
-import pl.parteka.smarthome.mqtt.CommandMessage;
 
 /**
  * Created by Michal on 2017-01-14.
@@ -21,7 +20,6 @@ public class Driver {
 
 
     public void sendCommand(Command command) {
-        CommandMessage message = new CommandMessage(this, command);
-        broker.publish(message);
+        broker.publish(this, command);
     }
 }

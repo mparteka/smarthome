@@ -1,7 +1,7 @@
 package pl.parteka.view;
 
-import pl.parteka.smarthome.core.receiver.Light;
-import pl.parteka.smarthome.core.sensor.TemperatureSensor;
+import pl.parteka.smarthome.core.device.receiver.Light;
+import pl.parteka.smarthome.core.device.sensor.TemperatureSensor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pl.parteka.smarthome.core.receiver;
+package pl.parteka.smarthome.core.device.receiver;
 
 import pl.parteka.smarthome.core.Driver;
 import pl.parteka.smarthome.core.Pin;

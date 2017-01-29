@@ -2,8 +2,8 @@ package pl.parteka.smarthome;
 
 import pl.parteka.smarthome.core.Driver;
 import pl.parteka.smarthome.core.Pin;
-import pl.parteka.smarthome.core.receiver.Light;
-import pl.parteka.smarthome.core.sensor.TemperatureSensor;
+import pl.parteka.smarthome.core.device.receiver.Light;
+import pl.parteka.smarthome.core.device.sensor.TemperatureSensor;
 import pl.parteka.smarthome.mqtt.MqttBroker;
 import pl.parteka.smarthome.opi.mqtt.intercepthandlers.MessageHandler;
 import pl.parteka.view.RoomView;

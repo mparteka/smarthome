@@ -1,7 +1,7 @@
 package pl.parteka.smarthome.opi.mqtt.intercepthandlers;
 
 import pl.parteka.smarthome.core.Driver;
-import pl.parteka.smarthome.core.DriverStateListener;
+import pl.parteka.smarthome.core.device.DriverStateListener;
 
 /**
  * Created by Michal on 2017-01-29.

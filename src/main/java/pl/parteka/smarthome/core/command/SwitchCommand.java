@@ -5,10 +5,13 @@ import pl.parteka.smarthome.core.Pin;
 /**
  * Created by Michal on 2017-01-14.
  */
-public class SwitchCommand extends Command {
+public class SwitchCommand implements Command {
 
     private final static String COMMAND_NAME = "SWITCH";
+
     private final int value;
+    private final Pin pin;
+    private final String action;
 
     public SwitchCommand(Pin pin) {
         this.pin = pin;
