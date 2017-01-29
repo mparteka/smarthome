@@ -12,10 +12,11 @@ import java.util.Map;
 /**
  * Created by Michal on 2017-01-15.
  */
-public abstract class AbstractMessageHandler<T extends DriverStateListener> extends AbstractInterceptHandler {
-    private Map<String, List<T>> listeners = new HashMap<>();
+public abstract class AbstractMessageHandler extends AbstractInterceptHandler {
 
-    public void registerListener(T listener) {
+    private Map<String, List<DriverStateListener>> listeners = new HashMap<>();
+
+    public void registerListener(DriverStateListener listener) {
         if (!listeners.containsKey(listener.getDriver().getId())) {
             listeners.put(listener.getDriver().getId(), new ArrayList<>());
         }
@@ -29,10 +30,14 @@ public abstract class AbstractMessageHandler<T extends DriverStateListener> exte
             return;
         }
 
-        for (T listener : listeners.get(driverId)) {
-            if (listener.getDeviceId().equals(msg.getDeviceId())) {
-                listener.updateValue(msg.getUpdatedValue());
-            }
+        getListener(driverId, msg.getDeviceId()).updateValue(msg.getUpdatedValue());
+
+    }
+
+    public DriverStateListener getListener(final String driverId, final String deviceId) {
+        if (listeners.containsKey(driverId)) {
+            return listeners.get(driverId).stream().filter(listener -> listener.getDeviceId().equals(deviceId)).findFirst().orElse(new NullListener());
         }
+        return new NullListener();
     }
 }

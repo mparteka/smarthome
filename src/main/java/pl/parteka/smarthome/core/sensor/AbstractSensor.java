@@ -7,8 +7,8 @@ import pl.parteka.smarthome.core.Driver;
  * Created by Michal on 2017-01-15.
  */
 public abstract class AbstractSensor extends AbstractDriverDevice {
-    public AbstractSensor(Driver driver) {
-        super(driver);
+    public AbstractSensor(Driver driver, String name, String deviceId) {
+        super(driver, name, deviceId);
     }
 
     abstract Object getValue();

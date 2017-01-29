@@ -8,11 +8,6 @@ import pl.parteka.smarthome.core.Pin;
 public class SwitchCommand extends Command {
 
     private final static String COMMAND_NAME = "SWITCH";
-
-    private enum SwitchCommandAction {
-        SWITCH, SET
-    }
-
     private final int value;
 
     public SwitchCommand(Pin pin) {
@@ -36,5 +31,9 @@ public class SwitchCommand extends Command {
         sb.append(" ").append(String.valueOf(value));
 
         return sb.toString();
+    }
+
+    private enum SwitchCommandAction {
+        SWITCH, SET
     }
 }

@@ -5,7 +5,7 @@ import pl.parteka.smarthome.core.Pin;
 /**
  * Created by Michal on 2017-01-15.
  */
-public class PinStateMessage extends AbstractMessage{
+public class PinStateMessage extends AbstractMessage {
 
     public PinStateMessage(String payload) {
         super(payload);

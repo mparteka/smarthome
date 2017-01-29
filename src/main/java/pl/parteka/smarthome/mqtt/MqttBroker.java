@@ -8,9 +8,9 @@ import io.moquette.server.config.IConfig;
 import io.moquette.server.config.IResourceLoader;
 import io.moquette.server.config.ResourceLoaderConfig;
 import pl.parteka.smarthome.core.Broker;
+import pl.parteka.smarthome.core.Driver;
 import pl.parteka.smarthome.core.Message;
-import pl.parteka.smarthome.opi.mqtt.intercepthandlers.PinStatusHandler;
-import pl.parteka.smarthome.opi.mqtt.intercepthandlers.TemperatureHandler;
+import pl.parteka.smarthome.core.command.Command;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +39,11 @@ public class MqttBroker implements Broker {
 
     public void publish(Message message) {
         server.internalPublish((PublishMessage) message);
+    }
+
+    @Override
+    public void sendCommand(Driver driver, Command command) {
+
     }
 
     public boolean addInterceptHandler(InterceptHandler interceptHandler) {

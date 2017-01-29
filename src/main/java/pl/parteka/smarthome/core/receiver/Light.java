@@ -15,24 +15,14 @@ public class Light extends Receiver {
     }
 
 
-    public void sendPinState(int pinState) {
+    protected void setPinState(int pinState) {
         SwitchCommand command = new SwitchCommand(pin, pinState);
         driver.sendCommand(command);
 
     }
 
     public void turnOn() {
-        sendPinState(Pin.PIN_ON);
-    }
-
-    public void switchLight() {
-        int newValue = 0;
-        if (this.pin.getValue() == Pin.PIN_ON) {
-            newValue = Pin.PIN_OFF;
-        } else {
-            newValue = Pin.PIN_ON;
-        }
-        sendPinState(newValue);
+        setPinState(Pin.PIN_ON);
     }
 
     public boolean isOn() {
@@ -48,11 +38,7 @@ public class Light extends Receiver {
     }
 
     public void turnOff() {
-        sendPinState(Pin.PIN_OFF);
+        setPinState(Pin.PIN_OFF);
     }
 
-    @Override
-    public String getDeviceId() {
-        return pin.toString();
-    }
 }

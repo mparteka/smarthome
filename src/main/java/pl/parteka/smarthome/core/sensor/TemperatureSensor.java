@@ -1,31 +1,18 @@
 package pl.parteka.smarthome.core.sensor;
 
 import pl.parteka.smarthome.core.Driver;
-import pl.parteka.smarthome.core.TemperatureListener;
 
 /**
  * Created by Michal on 2017-01-15.
  */
-public class TemperatureSensor extends AbstractSensor implements TemperatureListener {
+public class TemperatureSensor extends AbstractSensor {
 
     private float value;
-    private final String name;
-    private final String serialNumber;
 
     public TemperatureSensor(Driver driver, String name, String serialNumber) {
-        super(driver);
-        this.name = name;
-        this.serialNumber = serialNumber;
+        super(driver, name, serialNumber);
     }
 
-    @Override
-    public void updateTemperature(float value) {
-        this.value = value;
-    }
-
-    public String getName() {
-        return name;
-    }
 
     @Override
     public void updateValue(Object updatedValue) {
@@ -33,12 +20,8 @@ public class TemperatureSensor extends AbstractSensor implements TemperatureList
     }
 
     @Override
-    public String getDeviceId() {
-        return this.serialNumber;
-    }
-
-    @Override
     public Float getValue() {
         return new Float(value);
     }
+
 }
