@@ -18,26 +18,17 @@ public class DriverMessageHandler extends AbstractInterceptHandler {
 
     @Override
     public void onPublish(InterceptPublishMessage msg) {
+        //if comes from driver
         String payload = new String(msg.getPayload().array());
         DriverMessage driverMessage = new DriverMessage(payload);
-        notify(new DeviceId(msg.getClientID()), driverMessage);
+        DeviceId deviceId = new DeviceId(msg.getClientID());
+        if (!listeners.containsKey(deviceId)) {
+            listeners.get(deviceId).notify(driverMessage);
+        }
     }
 
     public void registerListener(DriverMessageListener listener) {
         listeners.put(listener.getDeviceId(), listener);
     }
-
-    protected void notify(DeviceId driverId, DriverMessage driverMessage) {
-        getListener(driverId).notify(driverMessage);
-
-    }
-
-    private DriverMessageListener getListener(final DeviceId deviceId) {
-        if (!listeners.containsKey(deviceId)) {
-            return new NullListener();
-        }
-        return listeners.get(deviceId);
-    }
-
 
 }
